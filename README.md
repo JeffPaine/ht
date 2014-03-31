@@ -2,7 +2,7 @@
 
 A simple endpoint for HTTP Tests.
 
-An incomplete, alpha quality Go port of, and homage to, Kenneth Reitz's [httpbin](https://github.com/kennethreitz/httpbin).
+An alpha quality Go port(ish) of Kenneth Reitz's awesome [httpbin](https://github.com/kennethreitz/httpbin).
 
 ## Endpoints
 
