@@ -6,7 +6,7 @@ An alpha quality Go port(ish) of Kenneth Reitz's awesome [httpbin](https://githu
 
 ## Endpoints
 
-* `/` Return the homepage
+* `/` Return the `ht` homepage
 * `/ip` Returns the requesting IP address
 * `/user-agent` Returns the user agent of the requestor
 * `/headers` Returns the request headers
