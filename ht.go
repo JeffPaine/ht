@@ -29,7 +29,13 @@ func index(w http.ResponseWriter, r *http.Request) {
 // Return the requesting host's IP address
 func ip(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	fmt.Fprint(w, Response{"origin": r.RemoteAddr})
+	ip := ""
+	if val, ok := r.Header["X-Forwarded-For"]; ok {
+		ip = val[0]
+	} else {
+		ip = r.RemoteAddr
+	}
+	fmt.Fprint(w, Response{"origin": ip})
 }
 
 // Return the requesting host's User Agent, if provided
