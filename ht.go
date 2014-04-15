@@ -50,12 +50,29 @@ func headers(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, Response{"headers": r.Header})
 }
 
+// Return GET data
+func get(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	url := r.URL.String()
+	args := r.URL.Query()
+	origin := ""
+	if val, ok := r.Header["X-Forwarded-For"]; ok {
+		origin = val[0]
+	} else {
+		origin = r.RemoteAddr
+	}
+	headers := r.Header
+	resp := Response{"url": url, "args": args, "origin": origin, "headers": headers}
+	fmt.Fprint(w, resp)
+}
+
 func main() {
 	// URLs
 	http.HandleFunc("/", index)
 	http.HandleFunc("/ip", ip)
 	http.HandleFunc("/user-agent", userAgent)
 	http.HandleFunc("/headers", headers)
+	http.HandleFunc("/get", get)
 
 	// Set our PORT to listen on
 	port := os.Getenv("PORT")
