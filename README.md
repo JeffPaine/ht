@@ -10,6 +10,7 @@ An alpha quality Go port(ish) of Kenneth Reitz's awesome [httpbin](https://githu
 * `/ip` Returns the requesting IP address
 * `/user-agent` Returns the user agent of the requestor
 * `/headers` Returns the request headers
+* `/get` Returns GET request data
 
 ## Why
 
