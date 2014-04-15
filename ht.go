@@ -19,6 +19,15 @@ func (r Response) String() string {
 	return string(b)
 }
 
+// Return the IP address of the given *http.Request
+func getIPAddress(r *http.Request) string {
+	if val, ok := r.Header["X-Forwarded-For"]; ok {
+		return val[0]
+	} else {
+		return r.RemoteAddr
+	}
+}
+
 // Return the index page
 func index(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "<h1>HT</h1><p><strong>H</strong>TTP <strong>T</strong>esting</p>")
@@ -27,13 +36,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 // Return the requesting host's IP address
 func ip(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	ip := ""
-	if val, ok := r.Header["X-Forwarded-For"]; ok {
-		ip = val[0]
-	} else {
-		ip = r.RemoteAddr
-	}
-	fmt.Fprint(w, Response{"origin": ip})
+	fmt.Fprint(w, Response{"origin": getIPAddress(r)})
 }
 
 // Return the requesting host's User Agent, if provided
@@ -53,12 +56,7 @@ func get(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	url := r.URL.String()
 	args := r.URL.Query()
-	origin := ""
-	if val, ok := r.Header["X-Forwarded-For"]; ok {
-		origin = val[0]
-	} else {
-		origin = r.RemoteAddr
-	}
+	origin := getIPAddress(r)
 	headers := r.Header
 	resp := Response{"url": url, "args": args, "origin": origin, "headers": headers}
 	fmt.Fprint(w, resp)
