@@ -11,14 +11,12 @@ import (
 // http://nesv.blogspot.com/2012/09/super-easy-json-http-responses-in-go.html
 type Response map[string]interface{}
 
-func (r Response) String() (s string) {
+func (r Response) String() string {
 	b, err := json.MarshalIndent(r, "", "    ")
 	if err != nil {
-		s = ""
-		return
+		return ""
 	}
-	s = string(b)
-	return
+	return string(b)
 }
 
 // Return the index page
