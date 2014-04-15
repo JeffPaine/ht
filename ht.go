@@ -54,11 +54,12 @@ func headers(w http.ResponseWriter, r *http.Request) {
 // Return GET data
 func get(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	url := r.URL.String()
-	args := r.URL.Query()
-	origin := getIPAddress(r)
-	headers := r.Header
-	resp := JSONResponse{"url": url, "args": args, "origin": origin, "headers": headers}
+	resp := JSONResponse{
+		"url":     r.URL.String(),
+		"args":    r.URL.Query(),
+		"origin":  getIPAddress(r),
+		"headers": r.Header,
+	}
 	fmt.Fprint(w, resp)
 }
 
