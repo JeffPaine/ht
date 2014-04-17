@@ -1,10 +1,10 @@
 package main
 
 import (
-	"testing"
 	"net/http"
 	"net/http/httptest"
-	)
+	"testing"
+)
 
 func TestIndexReturns200StatusCode(t *testing.T) {
 	request, _ := http.NewRequest("GET", "/", nil)
