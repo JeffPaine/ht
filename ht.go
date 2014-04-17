@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-// JSON response object
+// JSONResponse object
 // http://nesv.blogspot.com/2012/09/super-easy-json-http-responses-in-go.html
 type JSONResponse map[string]interface{}
 
@@ -23,9 +23,8 @@ func (r JSONResponse) String() string {
 func getIPAddress(r *http.Request) string {
 	if val, ok := r.Header["X-Forwarded-For"]; ok {
 		return val[0]
-	} else {
-		return r.RemoteAddr
 	}
+	return r.RemoteAddr
 }
 
 // Return the index page
