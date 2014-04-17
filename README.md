@@ -1,8 +1,8 @@
 # ht
 
-A server with endpoints for HTTP Tests, written in Go.
+Endpoints for HTTP Tests, written in Go.
 
-An alpha quality homage to Kenneth Reitz's awesome [httpbin](https://github.com/kennethreitz/httpbin).
+An homage to Kenneth Reitz's awesome [httpbin](https://github.com/kennethreitz/httpbin).
 
 ## Example
 
@@ -15,12 +15,18 @@ $ curl http://ht-go.herokuapp.com/user-agent
 
 ## Endpoints
 
-* [`/`](http://ht-go.herokuapp.com/) Return the `ht` homepage
-* [`/ip`](http://ht-go.herokuapp.com/ip) Returns the requesting IP address
-* [`/user-agent`](http://ht-go.herokuapp.com/user-agent) Returns the requesting user-agent
-* [`/headers`](http://ht-go.herokuapp.com/headers) Returns the request headers
-* [`/get`](http://ht-go.herokuapp.com/get) Returns GET request data
+Endpoint | Description
+--- | ---
+[`/`](http://ht-go.herokuapp.com/) | `ht` homepage
+[`/ip`](http://ht-go.herokuapp.com/ip) | Requesting IP address
+[`/user-agent`](http://ht-go.herokuapp.com/user-agent) | Requesting user-agent
+[`/headers`](http://ht-go.herokuapp.com/headers) | Request headers
+[`/get`](http://ht-go.herokuapp.com/get) | GET request data
 
 ## Why
 
 Sometimes you just need to test your code against an endpoint on the open internet.
+
+## Source
+
+[github.com/JeffPaine/ht](https://github.com/JeffPaine/ht)
