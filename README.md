@@ -1,17 +1,26 @@
 # ht
 
-A simple endpoint for HTTP Tests.
+A server with endpoints for HTTP Tests, written in Go.
 
-An alpha quality Go port(ish) of Kenneth Reitz's awesome [httpbin](https://github.com/kennethreitz/httpbin).
+An alpha quality homage to Kenneth Reitz's awesome [httpbin](https://github.com/kennethreitz/httpbin).
+
+## Example
+
+```bash
+$ curl http://ht-go.herokuapp.com/user-agent
+{
+    "user-agent": "curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8y zlib/1.2.5"
+}
+```
 
 ## Endpoints
 
-* `/` Return the `ht` homepage
-* `/ip` Returns the requesting IP address
-* `/user-agent` Returns the user agent of the requestor
-* `/headers` Returns the request headers
-* `/get` Returns GET request data
+* [`/`](http://ht-go.herokuapp.com/) Return the `ht` homepage
+* [`/ip`](http://ht-go.herokuapp.com/ip) Returns the requesting IP address
+* [`/user-agent`](http://ht-go.herokuapp.com/user-agent) Returns the requesting user-agent
+* [`/headers`](http://ht-go.herokuapp.com/headers) Returns the request headers
+* [`/get`](http://ht-go.herokuapp.com/get) Returns GET request data
 
 ## Why
 
-Sometimes you just need to test your code against an endpoint on the open internet. `ht` allows you to test your code plus gives you some handy endpoints for other tasks. The only limit is your creativeness.
+Sometimes you just need to test your code against an endpoint on the open internet.
