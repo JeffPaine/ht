@@ -2,7 +2,7 @@
 
 Endpoints for HTTP Tests, written in Go.
 
-An homage to Kenneth Reitz's awesome [httpbin](https://github.com/kennethreitz/httpbin).
+An homage to Kenneth Reitz's excellent [httpbin](https://github.com/kennethreitz/httpbin).
 
 ## Example
 
@@ -25,7 +25,7 @@ Endpoint | Description
 
 ## Why
 
-Sometimes you just need to test your code against an endpoint on the open internet.
+Folks will hopefully find these endpoints useful for testing code that retrieves data from the internet. It's written in Go as a fun experiment and to take advantage of Go's excellent performance (with 250 concurrent connections, response times averaged 16ms!). So, feel free to take advantage of the endpoints located at [http://ht-go.herokuapp.com/](http://ht-go.herokuapp.com/).
 
 ## Source
 
