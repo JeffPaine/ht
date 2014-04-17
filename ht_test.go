@@ -12,7 +12,7 @@ func TestIndexReturns200StatusCode(t *testing.T) {
 
 	index(response, request)
 
-	if response.Code != http.StatusOK {
+	if response.Code != 200 {
 		t.Fatalf("Received unexpected status code of %v", response.Code)
 	}
 }
@@ -23,7 +23,7 @@ func TestIpReturns200StatusCode(t *testing.T) {
 
 	ip(response, request)
 
-	if response.Code != http.StatusOK {
+	if response.Code != 200 {
 		t.Fatalf("Received unexpected status code of %v", response.Code)
 	}
 }
@@ -34,7 +34,7 @@ func TestUserAgentReturns200StatusCode(t *testing.T) {
 
 	userAgent(response, request)
 
-	if response.Code != http.StatusOK {
+	if response.Code != 200 {
 		t.Fatalf("Received unexpected status code of %v", response.Code)
 	}
 }
@@ -45,7 +45,7 @@ func TestHeadersReturns200StatusCode(t *testing.T) {
 
 	headers(response, request)
 
-	if response.Code != http.StatusOK {
+	if response.Code != 200 {
 		t.Fatalf("Received unexpected status code of %v", response.Code)
 	}
 }
@@ -56,7 +56,7 @@ func TestGetReturns200StatusCode(t *testing.T) {
 
 	get(response, request)
 
-	if response.Code != http.StatusOK {
+	if response.Code != 200 {
 		t.Fatalf("Received unexpected status code of %v", response.Code)
 	}
 }
