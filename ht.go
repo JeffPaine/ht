@@ -29,7 +29,7 @@ func getIPAddress(r *http.Request) string {
 
 // Return the index page
 func index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "<h1>HT</h1><p><strong>H</strong>TTP <strong>T</strong>esting</p>")
+	http.ServeFile(w, r, "index.html")
 }
 
 // Return the requesting host's IP address

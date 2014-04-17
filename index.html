@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+</head>
+<body>
+<h1 id="ht">ht</h1>
+<p>Endpoints for HTTP Tests, written in Go.</p>
+<p>An homage to Kenneth Reitz's awesome <a href="https://github.com/kennethreitz/httpbin">httpbin</a>.</p>
+<h2 id="example">Example</h2>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">curl</span> http://ht-go.herokuapp.com/user-agent
+<span class="kw">{</span>
+    <span class="st">&quot;user-agent&quot;</span>: <span class="st">&quot;curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8y zlib/1.2.5&quot;</span>
+<span class="kw">}</span></code></pre>
+<h2 id="endpoints">Endpoints</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Endpoint</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="http://ht-go.herokuapp.com/"><code>/</code></a></td>
+<td align="left"><code>ht</code> homepage</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ht-go.herokuapp.com/ip"><code>/ip</code></a></td>
+<td align="left">Requesting IP address</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ht-go.herokuapp.com/user-agent"><code>/user-agent</code></a></td>
+<td align="left">Requesting user-agent</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ht-go.herokuapp.com/headers"><code>/headers</code></a></td>
+<td align="left">Request headers</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ht-go.herokuapp.com/get"><code>/get</code></a></td>
+<td align="left">GET request data</td>
+</tr>
+</tbody>
+</table>
+<h2 id="why">Why</h2>
+<p>Sometimes you just need to test your code against an endpoint on the open internet.</p>
+<h2 id="source">Source</h2>
+<p><a href="https://github.com/JeffPaine/ht">github.com/JeffPaine/ht</a></p>
+</body>
+</html>
