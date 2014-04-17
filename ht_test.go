@@ -6,6 +6,24 @@ import (
 	"testing"
 )
 
+func TestGetIPAddress(t *testing.T) {
+	request, _ := http.NewRequest("GET", "/get", nil)
+
+	remoteAddr := "1.2.3.4"
+	request.RemoteAddr = remoteAddr
+	ip := getIPAddress(request)
+	if ip != remoteAddr {
+		t.Fatalf("Received incorrect IP address. Expected: %v, received: %v.", remoteAddr, ip)
+	}
+
+	headerIP := "5.6.7.8"
+	request.Header.Set("X-Forwarded-For", headerIP)
+	ip = getIPAddress(request)
+	if ip != headerIP {
+		t.Fatalf("Failed to parse X-Forwarded-For properly. Expected: %v, received: %v", headerIP, ip)
+	}
+}
+
 func TestIndexReturns200StatusCode(t *testing.T) {
 	request, _ := http.NewRequest("GET", "/", nil)
 	response := httptest.NewRecorder()
