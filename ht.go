@@ -7,11 +7,11 @@ import (
 	"os"
 )
 
-// JSONResponse object
+// jsonResponse object
 // http://nesv.blogspot.com/2012/09/super-easy-json-http-responses-in-go.html
-type JSONResponse map[string]interface{}
+type jsonResponse map[string]interface{}
 
-func (r JSONResponse) String() string {
+func (r jsonResponse) String() string {
 	b, err := json.MarshalIndent(r, "", "    ")
 	if err != nil {
 		return ""
@@ -35,25 +35,25 @@ func index(w http.ResponseWriter, r *http.Request) {
 // Return the requesting host's IP address
 func ip(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	fmt.Fprint(w, JSONResponse{"origin": getIPAddress(r)})
+	fmt.Fprint(w, jsonResponse{"origin": getIPAddress(r)})
 }
 
 // Return the requesting host's User Agent, if provided
 func userAgent(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	fmt.Fprint(w, JSONResponse{"user-agent": r.UserAgent()})
+	fmt.Fprint(w, jsonResponse{"user-agent": r.UserAgent()})
 }
 
 // Return the requesting host's headers
 func headers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	fmt.Fprint(w, JSONResponse{"headers": r.Header})
+	fmt.Fprint(w, jsonResponse{"headers": r.Header})
 }
 
 // Return GET data
 func get(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	resp := JSONResponse{
+	resp := jsonResponse{
 		"url":     r.URL.String(),
 		"args":    r.URL.Query(),
 		"origin":  getIPAddress(r),
