@@ -27,6 +27,30 @@ func getIPAddress(r *http.Request) string {
 	return r.RemoteAddr
 }
 
+// flatten takes a map[string][]string and flattens it into a nice map[string]string.
+// This saves us from having JSON values that are unnecessarily nested.
+// Before:
+//    "args": {
+//            "a": [
+//                "b"
+//            ],
+//            "c": [
+//                "d"
+//            ]
+//        }
+// After:
+//    "args": {
+//            "a": "b",
+//            "c": "d"
+//        }
+func flatten(m map[string][]string) map[string]string {
+	newHeader := make(map[string]string)
+	for k, v := range m {
+		newHeader[k] = v[0]
+	}
+	return newHeader
+}
+
 // Return the index page
 func index(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "index.html")
@@ -47,7 +71,7 @@ func userAgent(w http.ResponseWriter, r *http.Request) {
 // Return the requesting host's headers
 func headers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	fmt.Fprint(w, jsonResponse{"headers": r.Header})
+	fmt.Fprint(w, jsonResponse{"headers": flatten(r.Header)})
 }
 
 // Return GET data
@@ -55,9 +79,9 @@ func get(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	resp := jsonResponse{
 		"url":     r.URL.String(),
-		"args":    r.URL.Query(),
+		"args":    flatten(r.URL.Query()),
 		"origin":  getIPAddress(r),
-		"headers": r.Header,
+		"headers": flatten(r.Header),
 	}
 	fmt.Fprint(w, resp)
 }
