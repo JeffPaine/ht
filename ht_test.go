@@ -13,14 +13,14 @@ func TestGetIPAddress(t *testing.T) {
 	request.RemoteAddr = remoteAddr
 	ip := getIPAddress(request)
 	if ip != remoteAddr {
-		t.Fatalf("Received incorrect IP address. Expected: %v, received: %v.", remoteAddr, ip)
+		t.Errorf("Received incorrect IP address. Expected: %v, received: %v.", remoteAddr, ip)
 	}
 
 	headerIP := "5.6.7.8"
 	request.Header.Set("X-Forwarded-For", headerIP)
 	ip = getIPAddress(request)
 	if ip != headerIP {
-		t.Fatalf("Failed to parse X-Forwarded-For properly. Expected: %v, received: %v", headerIP, ip)
+		t.Errorf("Failed to parse X-Forwarded-For properly. Expected: %v, received: %v", headerIP, ip)
 	}
 }
 
@@ -31,7 +31,7 @@ func TestIndexReturns200StatusCode(t *testing.T) {
 	index(response, request)
 
 	if response.Code != 200 {
-		t.Fatalf("Received unexpected status code of %v", response.Code)
+		t.Errorf("Received unexpected status code of %v", response.Code)
 	}
 }
 
@@ -42,7 +42,7 @@ func TestIpReturns200StatusCode(t *testing.T) {
 	ip(response, request)
 
 	if response.Code != 200 {
-		t.Fatalf("Received unexpected status code of %v", response.Code)
+		t.Errorf("Received unexpected status code of %v", response.Code)
 	}
 }
 
@@ -53,7 +53,7 @@ func TestUserAgentReturns200StatusCode(t *testing.T) {
 	userAgent(response, request)
 
 	if response.Code != 200 {
-		t.Fatalf("Received unexpected status code of %v", response.Code)
+		t.Errorf("Received unexpected status code of %v", response.Code)
 	}
 }
 
@@ -64,7 +64,7 @@ func TestHeadersReturns200StatusCode(t *testing.T) {
 	headers(response, request)
 
 	if response.Code != 200 {
-		t.Fatalf("Received unexpected status code of %v", response.Code)
+		t.Errorf("Received unexpected status code of %v", response.Code)
 	}
 }
 
@@ -75,6 +75,6 @@ func TestGetReturns200StatusCode(t *testing.T) {
 	get(response, request)
 
 	if response.Code != 200 {
-		t.Fatalf("Received unexpected status code of %v", response.Code)
+		t.Errorf("Received unexpected status code of %v", response.Code)
 	}
 }
