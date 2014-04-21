@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 	"net/http/httptest"
+	"reflect"
 	"testing"
 )
 
@@ -21,6 +22,21 @@ func TestGetIPAddress(t *testing.T) {
 	ip = getIPAddress(request)
 	if ip != headerIP {
 		t.Errorf("Failed to parse X-Forwarded-For properly. Expected: %v, received: %v", headerIP, ip)
+	}
+}
+
+func TestFlatten(t *testing.T) {
+	input := map[string][]string{
+		"a": []string{"b"},
+		"c": []string{"d"},
+	}
+	output := map[string]string{
+		"a": "b",
+		"c": "d",
+	}
+	flattened := flatten(input)
+	if !reflect.DeepEqual(flattened, output) {
+		t.Errorf("Expected %v, received %v", input, output)
 	}
 }
 
