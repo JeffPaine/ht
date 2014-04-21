@@ -40,57 +40,30 @@ func TestFlatten(t *testing.T) {
 	}
 }
 
-func TestIndexReturns200StatusCode(t *testing.T) {
-	request, _ := http.NewRequest("GET", "/", nil)
-	response := httptest.NewRecorder()
-
-	index(response, request)
-
-	if response.Code != 200 {
-		t.Errorf("Received unexpected status code of %v", response.Code)
+func TestHandlersReturnExpectedStatusCodes(t *testing.T) {
+	type handler struct {
+		f      func(http.ResponseWriter, *http.Request)
+		method string
+		path   string
+		status int
 	}
-}
 
-func TestIpReturns200StatusCode(t *testing.T) {
-	request, _ := http.NewRequest("GET", "/ip", nil)
-	response := httptest.NewRecorder()
-
-	ip(response, request)
-
-	if response.Code != 200 {
-		t.Errorf("Received unexpected status code of %v", response.Code)
+	handlers := []handler{
+		handler{index, "GET", "/", 200},
+		handler{ip, "GET", "/ip", 200},
+		handler{userAgent, "GET", "/user-agent", 200},
+		handler{headers, "GET", "/headers", 200},
+		handler{get, "GET", "/get", 200},
 	}
-}
 
-func TestUserAgentReturns200StatusCode(t *testing.T) {
-	request, _ := http.NewRequest("GET", "/user-agent", nil)
-	response := httptest.NewRecorder()
+	for _, h := range handlers {
+		request, _ := http.NewRequest(h.method, h.path, nil)
+		response := httptest.NewRecorder()
 
-	userAgent(response, request)
+		h.f(response, request)
 
-	if response.Code != 200 {
-		t.Errorf("Received unexpected status code of %v", response.Code)
-	}
-}
-
-func TestHeadersReturns200StatusCode(t *testing.T) {
-	request, _ := http.NewRequest("GET", "/headers", nil)
-	response := httptest.NewRecorder()
-
-	headers(response, request)
-
-	if response.Code != 200 {
-		t.Errorf("Received unexpected status code of %v", response.Code)
-	}
-}
-
-func TestGetReturns200StatusCode(t *testing.T) {
-	request, _ := http.NewRequest("GET", "/get", nil)
-	response := httptest.NewRecorder()
-
-	get(response, request)
-
-	if response.Code != 200 {
-		t.Errorf("Received unexpected status code of %v", response.Code)
+		if response.Code != h.status {
+			t.Errorf("Expected status code %v, received %v", h.status, response.Code)
+		}
 	}
 }
