@@ -30,13 +30,13 @@ func TestFlatten(t *testing.T) {
 		"a": []string{"b"},
 		"c": []string{"d"},
 	}
-	output := map[string]string{
+	expected := map[string]string{
 		"a": "b",
 		"c": "d",
 	}
-	flattened := flatten(input)
-	if !reflect.DeepEqual(flattened, output) {
-		t.Errorf("Expected %v, received %v", input, output)
+	output := flatten(input)
+	if !reflect.DeepEqual(expected, output) {
+		t.Errorf("Expected %v, received %v", expected, output)
 	}
 }
 
