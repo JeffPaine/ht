@@ -7,6 +7,16 @@ import (
 	"testing"
 )
 
+func TestJsonResponseString(t *testing.T) {
+	j := jsonResponse{"a": "b"}
+	expected := `{
+    "a": "b"
+}`
+	if j.String() != expected {
+		t.Errorf("Expected: %v, Received: %v", expected, j.String())
+	}
+}
+
 func TestGetIPAddress(t *testing.T) {
 	request, _ := http.NewRequest("GET", "/get", nil)
 
