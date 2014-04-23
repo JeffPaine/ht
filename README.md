@@ -22,6 +22,8 @@ Endpoint | Description
 [`/user-agent`](http://ht-go.herokuapp.com/user-agent) | Requesting user-agent
 [`/headers`](http://ht-go.herokuapp.com/headers) | Request headers
 [`/get`](http://ht-go.herokuapp.com/get) | GET request data
+[`/robots.txt`](http://ht-go.herokuapp.com/robots.txt) | robots.txt compatible data
+[`/deny`](http://ht-go.herokuapp.com/deny) | robots.txt denied resource
 
 ## Why
 
