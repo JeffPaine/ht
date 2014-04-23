@@ -64,6 +64,8 @@ func TestHandlersReturnExpectedStatusCodes(t *testing.T) {
 		handler{userAgent, "GET", "/user-agent", 200},
 		handler{headers, "GET", "/headers", 200},
 		handler{get, "GET", "/get", 200},
+		handler{get, "GET", "/robots.txt", 200},
+		handler{get, "GET", "/deny", 200},
 	}
 
 	for _, h := range handlers {

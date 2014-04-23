@@ -89,6 +89,16 @@ func get(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, resp)
 }
 
+// Return robots.txt compatible data
+func robots(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "User-agent: *\nDisallow: /deny")
+}
+
+// Return a robots.txt denied resource
+func deny(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "This URL is denied in robots.txt")
+}
+
 func main() {
 	// URLs
 	http.HandleFunc("/", index)
@@ -96,6 +106,8 @@ func main() {
 	http.HandleFunc("/user-agent", userAgent)
 	http.HandleFunc("/headers", headers)
 	http.HandleFunc("/get", get)
+	http.HandleFunc("/robots.txt", robots)
+	http.HandleFunc("/deny", deny)
 
 	// Set our PORT to listen on
 	port := os.Getenv("PORT")
