@@ -38,11 +38,11 @@ func TestGetIPAddress(t *testing.T) {
 func TestFlatten(t *testing.T) {
 	input := map[string][]string{
 		"a": []string{"b"},
-		"c": []string{"d"},
+		"c": []string{"d", "e"},
 	}
 	expected := map[string]string{
 		"a": "b",
-		"c": "d",
+		"c": "d,e",
 	}
 	output := flatten(input)
 	if !reflect.DeepEqual(expected, output) {

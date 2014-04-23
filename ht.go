@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strings"
 )
 
 // jsonResponse object
@@ -29,24 +30,26 @@ func getIPAddress(r *http.Request) string {
 
 // flatten takes a map[string][]string and flattens it into a nice map[string]string.
 // This saves us from having JSON values that are unnecessarily nested.
+// If there are multiple entries in the original []string, they will be joined
+// into a single string like "a,b" as per HTTP headers spec for multiple entries.
 // Before:
 //    "args": {
 //            "a": [
 //                "b"
 //            ],
 //            "c": [
-//                "d"
+//                "d", "e"
 //            ]
 //        }
 // After:
 //    "args": {
 //            "a": "b",
-//            "c": "d"
+//            "c": "d,e"
 //        }
 func flatten(m map[string][]string) map[string]string {
 	newHeader := make(map[string]string)
 	for k, v := range m {
-		newHeader[k] = v[0]
+		newHeader[k] = strings.Join(v, ",")
 	}
 	return newHeader
 }
