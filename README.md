@@ -6,14 +6,8 @@ An homage to Kenneth Reitz's excellent [httpbin](https://github.com/kennethreitz
 
 ## Example
 
-From the command line, run:
-
 ```bash
 $ curl http://ht-go.herokuapp.com/user-agent
-```
-
-which returns
-```json
 {
     "user-agent": "curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8y zlib/1.2.5"
 }
