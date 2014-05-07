@@ -8,10 +8,12 @@ import (
 	"strings"
 )
 
-// jsonResponse object
+// jsonResponse objects allow you to easily create arbitrary JSON objects.
 // http://nesv.blogspot.com/2012/09/super-easy-json-http-responses-in-go.html
 type jsonResponse map[string]interface{}
 
+// String allows you to auto-marshal jsonResponse objects into properly formatted JSON
+// when called.
 func (r jsonResponse) String() string {
 	b, err := json.MarshalIndent(r, "", "    ")
 	if err != nil {
@@ -20,7 +22,7 @@ func (r jsonResponse) String() string {
 	return string(b)
 }
 
-// Return the IP address of the given *http.Request
+// getIPAddress returns the IP address of the given *http.Request.
 func getIPAddress(r *http.Request) string {
 	if val, ok := r.Header["X-Forwarded-For"]; ok {
 		return val[0]
@@ -54,30 +56,30 @@ func flatten(m map[string][]string) map[string]string {
 	return newHeader
 }
 
-// Return the index page
+// index returns the index page.
 func index(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "index.html")
 }
 
-// Return the requesting host's IP address
+// ip returns the requesting host's IP address.
 func ip(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	fmt.Fprint(w, jsonResponse{"origin": getIPAddress(r)})
 }
 
-// Return the requesting host's User Agent, if provided
+// UserAgent returns the requesting host's User Agent, if provided.
 func userAgent(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	fmt.Fprint(w, jsonResponse{"user-agent": r.UserAgent()})
 }
 
-// Return the requesting host's headers
+// headers returns the requesting host's request headers.
 func headers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	fmt.Fprint(w, jsonResponse{"headers": flatten(r.Header)})
 }
 
-// Return GET data
+// get returns GET request data.
 func get(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	resp := jsonResponse{
@@ -89,12 +91,12 @@ func get(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, resp)
 }
 
-// Return robots.txt compatible data
+// robots returns robots.txt compatible data.
 func robots(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "User-agent: *\nDisallow: /deny")
 }
 
-// Return a robots.txt denied resource
+// deny returns a robots.txt denied resource.
 func deny(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "This URL is denied in robots.txt")
 }
