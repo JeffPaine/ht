@@ -3,6 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/russross/blackfriday"
+	"io/ioutil"
 	"net/http"
 	"os"
 	"strings"
@@ -56,7 +58,12 @@ func flatten(m map[string][]string) map[string]string {
 
 // Return the index page
 func index(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "index.html")
+	input, err := ioutil.ReadFile("README.md")
+	if err != nil {
+		fmt.Fprint(w, "Error")
+	}
+	output := blackfriday.MarkdownCommon(input)
+	fmt.Fprint(w, string(output))
 }
 
 // Return the requesting host's IP address
