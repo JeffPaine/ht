@@ -56,7 +56,7 @@ func flatten(m map[string][]string) map[string]string {
 	return newHeader
 }
 
-// Return the index page
+// index parses the README.md file and returns its contents in HTML form.
 func index(w http.ResponseWriter, r *http.Request) {
 	input, err := ioutil.ReadFile("README.md")
 	if err != nil {
