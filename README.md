@@ -27,7 +27,7 @@ Endpoint | Description
 
 ## Why
 
-Folks will hopefully find these endpoints useful for testing code that retrieves data from the internet. It's written in Go as a fun experiment and to take advantage of Go's excellent performance (with 250 concurrent connections, response times averaged 16ms!). So, feel free to take advantage of the endpoints located at [http://ht-go.herokuapp.com/](http://ht-go.herokuapp.com/).
+Folks will hopefully find these endpoints at [ht-go.herokuapp.com/](http://ht-go.herokuapp.com/) useful for testing code that retrieves data from the internet. It's written in Go as a fun experiment and to take advantage of Go's excellent performance (with 250 concurrent connections, response times averaged 16ms!).
 
 ## Source
 
