@@ -74,7 +74,7 @@ func ip(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, jsonResponse{"origin": getIPAddress(r)})
 }
 
-// UserAgent returns the requesting host's User Agent, if provided.
+// userAgent returns the requesting host's User Agent, if provided.
 func userAgent(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	fmt.Fprint(w, jsonResponse{"user-agent": r.UserAgent()})
