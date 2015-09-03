@@ -4,10 +4,27 @@ Endpoints for HTTP Tests, written in Go.
 
 An homage to Kenneth Reitz's excellent [httpbin](https://github.com/kennethreitz/httpbin).
 
-## Example
+## Download
 
-```bash
-$ curl http://ht-go.herokuapp.com/user-agent
+#### Command line
+
+```
+$ git clone https://github.com/JeffPaine/ht.git
+```
+
+#### Web browser
+[ht download](https://github.com/JeffPaine/ht/archive/master.zip)
+
+## Usage
+
+```
+$ cd ht/
+# Default port is 8000, but you can use any you like / have permissions for.
+$ PORT=8000
+$ docker build -t ht .
+$ docker run -it --rm -p $PORT:$PORT --name ht-running ht
+# Try it out.
+$ curl /user-agent
 {
     "user-agent": "curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8y zlib/1.2.5"
 }
@@ -17,17 +34,23 @@ $ curl http://ht-go.herokuapp.com/user-agent
 
 Endpoint | Description
 --- | ---
-[`/`](http://ht-go.herokuapp.com/) | `ht` homepage
-[`/ip`](http://ht-go.herokuapp.com/ip) | Requesting IP address
-[`/user-agent`](http://ht-go.herokuapp.com/user-agent) | Requesting user-agent
-[`/headers`](http://ht-go.herokuapp.com/headers) | Request headers
-[`/get`](http://ht-go.herokuapp.com/get) | GET request data
-[`/robots.txt`](http://ht-go.herokuapp.com/robots.txt) | robots.txt compatible data
-[`/deny`](http://ht-go.herokuapp.com/deny) | robots.txt denied resource
+[`/`](/) | `ht` homepage
+[`/ip`](/ip) | Requesting IP address
+[`/user-agent`](/user-agent) | Requesting user-agent
+[`/headers`](/headers) | Request headers
+[`/get`](/get) | GET request data
+[`/robots.txt`](/robots.txt) | robots.txt compatible data
+[`/deny`](/deny) | robots.txt denied resource
 
 ## Why
 
-Folks will hopefully find these endpoints at [ht-go.herokuapp.com/](http://ht-go.herokuapp.com/) useful for testing code that retrieves data from the internet. It's written in Go as a fun experiment and to take advantage of Go's excellent performance (with 250 concurrent connections, response times averaged 16ms!).
+Folks will hopefully find these endpoints useful for testing code that
+retrieves data over the network. Just fire up your own instance of `ht` and you
+can test your code against it without having lean on some random site or
+endpoints.
+
+It's written in Go as a fun experiment and to take advantage of Go's excellent
+performance (with 250 concurrent connections, response times averaged 16ms!).
 
 ## Source
 
