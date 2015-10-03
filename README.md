@@ -24,9 +24,9 @@ $ PORT=8000
 $ docker build -t ht .
 $ docker run -it --rm -p $PORT:$PORT --name ht-running ht
 # Try it out.
-$ curl /user-agent
+$ curl "localhost:$PORT/user-agent"
 {
-    "user-agent": "curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8y zlib/1.2.5"
+    "user-agent": "curl/7.35.0"
 }
 ```
 
