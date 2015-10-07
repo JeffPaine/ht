@@ -12,6 +12,11 @@ $ cd ht/
 $ PORT=8000  # set port we want ht to listen on (default: 8000)
 $ docker build -t ht .
 $ docker run -it --rm -p $PORT:$PORT --name ht-running ht
+```
+
+Then, from another shell session, run
+
+```
 $ curl "localhost:$PORT/user-agent"  # see Endpoints for supported endpoints
 {
     "user-agent": "curl/7.35.0"
