@@ -17,7 +17,7 @@ $ docker run -it --rm -p $PORT:$PORT --name ht-running ht
 Then, from another shell session, run
 
 ```
-$ curl "localhost:$PORT/user-agent"  # see Endpoints for supported endpoints
+$ curl "localhost:$8000/user-agent"  # see Endpoints for supported endpoints
 {
     "user-agent": "curl/7.35.0"
 }
