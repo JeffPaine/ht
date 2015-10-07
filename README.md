@@ -4,27 +4,15 @@ Endpoints for HTTP Tests, written in Go.
 
 An homage to Kenneth Reitz's excellent [httpbin](https://github.com/kennethreitz/httpbin).
 
-## Download
-
-#### Command line
+## Quick Start
 
 ```
 $ git clone https://github.com/JeffPaine/ht.git
-```
-
-#### Web browser
-[ht download](https://github.com/JeffPaine/ht/archive/master.zip)
-
-## Usage
-
-```
 $ cd ht/
-# Default port is 8000, but you can use any you like / have permissions for.
-$ PORT=8000
+$ PORT=8000  # set port we want ht to listen on (default: 8000)
 $ docker build -t ht .
 $ docker run -it --rm -p $PORT:$PORT --name ht-running ht
-# Try it out.
-$ curl "localhost:$PORT/user-agent"
+$ curl "localhost:$PORT/user-agent"  # see Endpoints for supported endpoints
 {
     "user-agent": "curl/7.35.0"
 }
@@ -34,13 +22,13 @@ $ curl "localhost:$PORT/user-agent"
 
 Endpoint | Description
 --- | ---
-[`/`](/) | `ht` homepage
-[`/ip`](/ip) | Requesting IP address
-[`/user-agent`](/user-agent) | Requesting user-agent
-[`/headers`](/headers) | Request headers
-[`/get`](/get) | GET request data
-[`/robots.txt`](/robots.txt) | robots.txt compatible data
-[`/deny`](/deny) | robots.txt denied resource
+`/` | `ht` homepage
+`/ip` | Requesting IP address
+`/user-agent` | Requesting user-agent
+`/headers` | Request headers
+`/get` | GET request data
+`/robots.txt` | robots.txt compatible data
+`/deny` | robots.txt denied resource
 
 ## Why
 
